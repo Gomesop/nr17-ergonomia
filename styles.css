@@ -413,8 +413,13 @@ a { color: var(--azul); text-decoration: none; }
 }
 .cena-svg { display: block; width: 100%; height: auto; }
 
-/* o risco É o desenho: o clique acerta porque acerta a figura */
+/* O alvo do clique é a área de captura do risco, não os traços soltos do
+   desenho. Sem isto, formas que se espalham pela cena — o cone da luminária,
+   o jato do ar-condicionado, as pernas da banqueta — roubavam o clique de
+   quem estava por baixo, mesmo com a área delimitada. */
 .cena-svg .risco { cursor: pointer; transition: 0.18s ease; }
+.cena-svg .risco > *:not(.area-clique) { pointer-events: none; }
+.cena-svg .area-clique { pointer-events: all; }
 .cena-svg .risco:hover { filter: drop-shadow(0 0 10px rgba(251,191,36,0.9)); }
 .cena-svg .risco:focus-visible { outline: 3px solid var(--amarelo); outline-offset: 3px; }
 .cena-svg .risco.achado {
