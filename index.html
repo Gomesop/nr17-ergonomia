@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>NR-17 Ergonomia - Hora da Segurança</title>
+    <meta name="description" content="Jogo interativo sobre NR-17 Ergonomia no ambiente de trabalho. Aprenda sobre postura, mobiliário, levantamento de cargas e organização do trabalho.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#0d182c">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- fundo animado: silhuetas de mobiliário subindo devagar -->
+    <div class="fundo-vivo" aria-hidden="true">
+        <span class="fv-halo h1"></span><span class="fv-halo h2"></span>
+        <span class="fv-item">🪑</span><span class="fv-item">🖥️</span><span class="fv-item">⌨️</span>
+        <span class="fv-item">💡</span><span class="fv-item">📐</span><span class="fv-item">🦶</span>
+    </div>
+    <!-- ====== LANDING PAGE ====== -->
+    <section id="landing" class="screen active">
+        <div class="landing-bg"><div class="floating-shapes">
+            <div class="shape shape-1"></div><div class="shape shape-2"></div>
+            <div class="shape shape-3"></div><div class="shape shape-4"></div>
+        </div></div>
+        <div class="landing-content">
+            <div class="logo-container">
+                <img src="logo.png" alt="Hora da Segurança" class="main-logo">
+                <div class="logo-glow"></div>
+            </div>
+            <h1 class="landing-title">
+                <span class="title-line-1">Hora da</span>
+                <span class="title-line-2">Segurança</span>
+            </h1>
+            <p class="landing-subtitle">Treinamentos e soluções em segurança do trabalho</p>
+            <div class="landing-url">
+                <a href="https://www.horadaseguranca.com" target="_blank" rel="noopener">🌐 www.horadaseguranca.com</a>
+            </div>
+            <div class="landing-divider"><span class="divider-line"></span><span class="divider-icon">🛡️</span><span class="divider-line"></span></div>
+            <h2 class="game-title-landing">NR-17 Ergonomia</h2>
+            <p class="game-description">Domine a Norma Regulamentadora 17! Identifique riscos ergonômicos, monte postos de trabalho corretos e teste seus conhecimentos em 6 fases dinâmicas.</p>
+            <div class="landing-features">
+                <div class="feature-card"><div class="feature-icon">🪑</div><div class="feature-text"><strong>Fase 1</strong><span>Monte o Posto</span></div></div>
+                <div class="feature-card"><div class="feature-icon">🔍</div><div class="feature-text"><strong>Fase 2</strong><span>Escritório</span></div></div>
+                <div class="feature-card"><div class="feature-icon">🏭</div><div class="feature-text"><strong>Fase 3</strong><span>Fábrica</span></div></div>
+                <div class="feature-card"><div class="feature-icon">⏱️</div><div class="feature-text"><strong>Fase 4</strong><span>Quiz</span></div></div>
+                <div class="feature-card"><div class="feature-icon">🃏</div><div class="feature-text"><strong>Fase 5</strong><span>Cartas</span></div></div>
+                <div class="feature-card"><div class="feature-icon">🧠</div><div class="feature-text"><strong>Fase 6</strong><span>V ou F</span></div></div>
+            </div>
+            <button class="btn-primary btn-start" onclick="showScreen('playerName')">
+                <span class="btn-icon">▶</span><span>Iniciar Jogo</span>
+            </button>
+            <div class="landing-footer"><p>© 2025 Hora da Segurança - Todos os direitos reservados</p></div>
+        </div>
+    </section>
+
+    <!-- ====== PLAYER NAME ====== -->
+    <section id="playerName" class="screen">
+        <div class="center-container">
+            <div class="glass-card">
+                <div class="card-icon">👷</div>
+                <h2>Identificação do Jogador</h2>
+                <p>Preencha seus dados para começar o treinamento</p>
+                <div class="input-group">
+                    <input type="text" id="inputName" placeholder="Seu nome completo" maxlength="50">
+                </div>
+                <div class="input-group">
+                    <input type="email" id="inputEmail" placeholder="Seu e-mail" maxlength="100">
+                </div>
+                <div class="input-group">
+                    <input type="text" id="inputEmpresa" placeholder="Empresa ou instituição" maxlength="80">
+                </div>
+                <div id="setupErro" class="form-erro hidden"></div>
+                <button class="btn-primary" onclick="confirmName()">
+                    <span>Continuar</span><span class="btn-arrow">→</span>
+                </button>
+                <p class="form-note">Seus dados serão registrados para certificação.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PHASE INTRO ====== -->
+    <section id="phaseIntro" class="screen">
+        <div class="center-container">
+            <div class="glass-card phase-intro-card">
+                <div class="progress-dots" id="progressDots"></div>
+                <div class="intro-badge" id="introBadge">FASE 1</div>
+                <div class="intro-icon" id="introIcon">🪑</div>
+                <h2 class="intro-title" id="introTitle">Monte o Posto</h2>
+                <p class="intro-desc" id="introDesc">Descrição da fase</p>
+                <div class="intro-rules" id="introRules"></div>
+                <button class="btn-primary" onclick="startCurrentPhase()">
+                    <span>Começar Fase</span><span class="btn-arrow">→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PHASE 1: MONTE O POSTO ====== -->
+    <section id="phase1" class="screen">
+        <div class="game-header">
+            <div class="header-left"><div class="phase-tag"><span>FASE</span><span class="phase-num">1</span></div><div class="phase-title">Monte o Posto</div></div>
+            <div class="header-center"><div class="score-display"><span class="score-icon">🪑</span><span id="p1Progress">0</span>/<span id="p1Total">5</span></div></div>
+            <div class="header-right"><div class="stats-mini"><div class="stat correct-stat"><span>✓</span><span id="p1Correct">0</span></div><div class="stat wrong-stat"><span>✗</span><span id="p1Wrong">0</span></div></div></div>
+        </div>
+        <div class="phase1-area">
+            <div class="workstation-visual" id="workstationVisual"></div>
+            <div class="selection-panel" id="selectionPanel">
+                <h3 class="selection-title" id="selectionTitle">Escolha o item correto:</h3>
+                <p class="selection-question" id="selectionQuestion">Pergunta aqui</p>
+                <div class="options-grid" id="optionsGrid"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PHASE 2 & 3: CLICK SCENES ====== -->
+    <section id="clickScene" class="screen">
+        <div class="game-header">
+            <div class="header-left"><div class="phase-tag"><span>FASE</span><span class="phase-num" id="csPhaseNum">2</span></div><div class="phase-title" id="csPhaseTitle">Escritório</div></div>
+            <div class="header-center"><div class="score-display"><span class="score-icon">🔍</span><span id="csFound">0</span>/<span id="csTotal">8</span></div></div>
+            <div class="header-right"><div class="stats-mini"><div class="stat correct-stat"><span>✓</span><span id="csCorrect">0</span></div><div class="stat wrong-stat"><span>✗</span><span id="csWrong">0</span></div></div></div>
+        </div>
+        <div class="game-area">
+            <div class="cena-dica">🔎 <span>Clique <strong>sobre o objeto</strong> que representa o risco. Passe o mouse para destacar os elementos da cena.</span></div>
+            <div class="scene-container" id="clickSceneContainer">
+                <div id="cenaSvg" class="cena-wrap"></div>
+                <div id="clickFeedback" class="click-feedback"></div>
+            </div>
+        </div>
+        <div id="riskPopup" class="popup hidden">
+            <div class="popup-content">
+                <div class="popup-icon">⚠️</div>
+                <h3 id="riskPopupTitle"></h3>
+                <p id="riskPopupDesc"></p>
+                <button class="btn-small" onclick="closePopup('riskPopup')">Entendi!</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PHASE 4: QUIZ ====== -->
+    <section id="phase4" class="screen">
+        <div class="game-header">
+            <div class="header-left"><div class="phase-tag"><span>FASE</span><span class="phase-num">4</span></div><div class="phase-title">Quiz Relâmpago</div></div>
+            <div class="header-center"><div class="score-display"><span class="score-icon">⏱️</span><span id="quizProgress">0</span>/<span id="quizTotal">15</span></div></div>
+            <div class="header-right"><div class="stats-mini"><div class="stat correct-stat"><span>✓</span><span id="quizCorrect">0</span></div><div class="stat wrong-stat"><span>✗</span><span id="quizWrong">0</span></div></div></div>
+        </div>
+        <div class="quiz-area">
+            <div class="timer-bar-container">
+                <div class="timer-bar" id="timerBar"></div>
+                <span class="timer-text" id="timerText">10s</span>
+            </div>
+            <div class="quiz-card" id="quizCard">
+                <div class="quiz-number" id="quizNumber">Pergunta 1</div>
+                <h3 class="quiz-question" id="quizQuestion">Pergunta aqui?</h3>
+                <div class="quiz-options" id="quizOptions"></div>
+            </div>
+        </div>
+        <div id="quizFeedback" class="popup hidden">
+            <div class="popup-content" id="quizFeedbackContent">
+                <div class="popup-icon" id="quizFeedbackIcon">✅</div>
+                <h3 id="quizFeedbackTitle">Correto!</h3>
+                <p id="quizFeedbackDesc">Explicação</p>
+                <button class="btn-small" onclick="nextQuizQuestion()">Próxima</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PHASE 5: CARDS ====== -->
+    <section id="phase5" class="screen">
+        <div class="game-header">
+            <div class="header-left"><div class="phase-tag"><span>FASE</span><span class="phase-num">5</span></div><div class="phase-title">Cartas Ergonômicas</div></div>
+            <div class="header-center"><div class="score-display"><span class="score-icon">🃏</span><span id="cardProgress5">0</span>/<span id="cardTotal5">8</span></div></div>
+            <div class="header-right"><div class="stats-mini"><div class="stat correct-stat"><span>✓</span><span id="cardCorrect5">0</span></div><div class="stat wrong-stat"><span>✗</span><span id="cardWrong5">0</span></div></div></div>
+        </div>
+        <div class="card-game-area">
+            <div class="scenario-section">
+                <div class="scenario-card" id="problemCard">
+                    <div class="scenario-badge">PROBLEMA ERGONÔMICO</div>
+                    <div class="scenario-icon" id="problemIcon">🤕</div>
+                    <h3 class="scenario-title" id="problemTitle">Problema</h3>
+                    <p class="scenario-desc" id="problemDesc">Descrição</p>
+                </div>
+            </div>
+            <div class="epi-section">
+                <h3 class="epi-prompt">Selecione a solução correta:</h3>
+                <div class="epi-cards-grid" id="solutionGrid"></div>
+            </div>
+        </div>
+        <div id="cardFeedback5" class="popup hidden">
+            <div class="popup-content" id="cardFeedbackContent5">
+                <div class="popup-icon" id="cardFeedbackIcon5">✅</div>
+                <h3 id="cardFeedbackTitle5">Correto!</h3>
+                <p id="cardFeedbackDesc5">Explicação</p>
+                <button class="btn-small" onclick="nextCardRound5()">Próximo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PHASE 6: TRUE OR FALSE ====== -->
+    <section id="phase6" class="screen">
+        <div class="game-header">
+            <div class="header-left"><div class="phase-tag"><span>FASE</span><span class="phase-num">6</span></div><div class="phase-title">Verdadeiro ou Falso</div></div>
+            <div class="header-center"><div class="score-display"><span class="score-icon">🧠</span><span id="vfProgress">0</span>/<span id="vfTotal">12</span></div></div>
+            <div class="header-right"><div class="stats-mini"><div class="stat correct-stat"><span>✓</span><span id="vfCorrect">0</span></div><div class="stat wrong-stat"><span>✗</span><span id="vfWrong">0</span></div></div></div>
+        </div>
+        <div class="vf-area">
+            <div class="vf-card" id="vfCard">
+                <div class="vf-number" id="vfNumber">1 / 12</div>
+                <p class="vf-statement" id="vfStatement">Afirmação aqui...</p>
+            </div>
+            <div class="vf-buttons">
+                <button class="vf-btn vf-true" id="btnTrue" onclick="answerVF(true)">
+                    <span class="vf-btn-icon">✓</span><span>VERDADEIRO</span>
+                </button>
+                <button class="vf-btn vf-false" id="btnFalse" onclick="answerVF(false)">
+                    <span class="vf-btn-icon">✗</span><span>FALSO</span>
+                </button>
+            </div>
+        </div>
+        <div id="vfFeedback" class="popup hidden">
+            <div class="popup-content" id="vfFeedbackContent">
+                <div class="popup-icon" id="vfFeedbackIcon">✅</div>
+                <h3 id="vfFeedbackTitle">Correto!</h3>
+                <p id="vfFeedbackDesc">Explicação</p>
+                <button class="btn-small" onclick="nextVF()">Próxima</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PHASE COMPLETE ====== -->
+    <section id="phaseComplete" class="screen">
+        <div class="center-container">
+            <div class="glass-card">
+                <div class="complete-stars"><span class="star" id="s1">⭐</span><span class="star" id="s2">⭐</span><span class="star" id="s3">⭐</span></div>
+                <h2 class="complete-title">Fase Concluída!</h2>
+                <div class="complete-stats" id="completeStats"></div>
+                <button class="btn-primary" id="btnNext" onclick="goNextPhase()">
+                    <span>Próxima Fase</span><span class="btn-arrow">→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CERTIFICATE ====== -->
+    <section id="certificate" class="screen">
+        <div class="certificate-container">
+            <div class="certificate-card" id="certificateCard">
+                <div class="cert-border">
+                    <div class="cert-corner cert-tl"></div><div class="cert-corner cert-tr"></div>
+                    <div class="cert-corner cert-bl"></div><div class="cert-corner cert-br"></div>
+                    <div class="cert-header">
+                        <img src="logo.png" alt="Logo" class="cert-logo">
+                        <div><h2 class="cert-brand">Hora da Segurança</h2><p class="cert-brand-url">www.horadaseguranca.com</p></div>
+                    </div>
+                    <div class="cert-divider"></div>
+                    <h1 class="cert-title">CERTIFICADO</h1>
+                    <p class="cert-subtitle">de Participação</p>
+                    <div class="cert-body">
+                        <p class="cert-text">Certificamos que</p>
+                        <h2 class="cert-name" id="certName">Nome</h2>
+                        <div class="cert-name-line"></div>
+                        <p class="cert-text">completou com êxito o treinamento interativo de</p>
+                        <h3 class="cert-course">NR-17 Ergonomia</h3>
+                        <p class="cert-text">demonstrando conhecimento em ergonomia no ambiente de trabalho, identificação de riscos ergonômicos, postura correta e organização do trabalho conforme a NR-17.</p>
+                    </div>
+                    <div class="cert-results" id="certResults"></div>
+                    <div class="cert-footer">
+                        <div class="cert-date-block"><p class="cert-label">Data</p><p class="cert-value" id="certDate">--/--/----</p><div class="cert-line"></div></div>
+                        <div class="cert-seal"><div class="seal-circle"><span>🛡️</span></div></div>
+                        <div class="cert-sig-block"><p class="cert-label">Hora da Segurança</p><p class="cert-value">Treinamentos em SST</p><div class="cert-line"></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cert-actions">
+                <button class="btn-primary" onclick="restartGame()"><span>🔄</span><span>Jogar Novamente</span></button>
+                <button class="btn-secondary" onclick="window.print()"><span>🖨️</span><span>Imprimir</span></button>
+            </div>
+        </div>
+    </section>
+
+    <script src="scenes.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
