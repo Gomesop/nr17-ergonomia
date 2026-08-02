@@ -353,7 +353,6 @@ function startClickScene(phase) {
        retângulo invisível desalinhado da figura. */
     const alvo = document.getElementById('cenaSvg');
     alvo.innerHTML = montarCena(phase === 2 ? 'escritorio' : 'fabrica');
-    ativarAreasDeClique(alvo.querySelector('svg'));
 
     const container = document.getElementById('clickSceneContainer');
     container.onclick = (e) => handleClickScene(e, riscos, phase);
@@ -367,6 +366,10 @@ function startClickScene(phase) {
 
     document.getElementById('clickFeedback').innerHTML = '';
     showScreen('clickScene');
+
+    /* Só depois de a tela ficar visível: getBBox() devolve zero enquanto o
+       elemento está em display:none, e as áreas de clique sairiam vazias. */
+    requestAnimationFrame(() => ativarAreasDeClique(alvo.querySelector('svg')));
 }
 
 function handleClickScene(e, riscos, phase) {
