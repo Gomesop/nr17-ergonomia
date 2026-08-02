@@ -368,8 +368,12 @@ function startClickScene(phase) {
     showScreen('clickScene');
 
     /* Só depois de a tela ficar visível: getBBox() devolve zero enquanto o
-       elemento está em display:none, e as áreas de clique sairiam vazias. */
-    requestAnimationFrame(() => ativarAreasDeClique(alvo.querySelector('svg')));
+       elemento está em display:none, e as áreas de clique sairiam vazias.
+       Chamada SÍNCRONA de propósito — getBBox força o layout na hora. Não use
+       requestAnimationFrame aqui: em aba de segundo plano ele não dispara e as
+       áreas nunca seriam criadas. O setTimeout é só uma rede de segurança. */
+    ativarAreasDeClique(alvo.querySelector('svg'));
+    setTimeout(() => ativarAreasDeClique(alvo.querySelector('svg')), 80);
 }
 
 function handleClickScene(e, riscos, phase) {
