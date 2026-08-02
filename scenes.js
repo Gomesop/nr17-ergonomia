@@ -317,29 +317,29 @@ function svgFabrica() {
 <svg viewBox="0 0 1000 580" class="cena-svg" role="img" aria-label="Setor de produção com riscos ergonômicos">
   <defs>
     <linearGradient id="fParede" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#e3ebf4"/><stop offset="1" stop-color="#c3d0de"/>
+      <stop offset="0" stop-color="#e8eff7"/><stop offset="1" stop-color="#c6d3e1"/>
     </linearGradient>
     <linearGradient id="fPiso" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#98a2ae"/><stop offset="1" stop-color="#78838f"/>
+      <stop offset="0" stop-color="#9ba6b3"/><stop offset="1" stop-color="#78838f"/>
     </linearGradient>
     <linearGradient id="pele2" x1="0" y1="0" x2="0.3" y2="1">
       <stop offset="0" stop-color="#f8dcbc"/><stop offset="1" stop-color="#eec69c"/>
     </linearGradient>
-    <linearGradient id="uniVerm" x1="0" y1="0" x2="0.4" y2="1">
-      <stop offset="0" stop-color="#ef4444"/><stop offset="1" stop-color="#b91c1c"/>
+    <linearGradient id="uniforme" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#f97316"/><stop offset="1" stop-color="#c2410c"/>
     </linearGradient>
-    <linearGradient id="uniRoxo" x1="0" y1="0" x2="0.4" y2="1">
-      <stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#6d28d9"/>
+    <linearGradient id="calcaF" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#33455f"/><stop offset="1" stop-color="#1e2d42"/>
     </linearGradient>
-    <linearGradient id="uniAzul" x1="0" y1="0" x2="0.4" y2="1">
-      <stop offset="0" stop-color="#0284c7"/><stop offset="1" stop-color="#075985"/>
+    <linearGradient id="caixa" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#e0a04a"/><stop offset="1" stop-color="#b97722"/>
     </linearGradient>
-    <linearGradient id="uniVerde" x1="0" y1="0" x2="0.4" y2="1">
-      <stop offset="0" stop-color="#14b8a6"/><stop offset="1" stop-color="#0f766e"/>
+    <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c3cbd5"/><stop offset="1" stop-color="#8e99a6"/>
     </linearGradient>
-    <radialGradient id="fSombra" cx="0.5" cy="0.4" r="0.6">
-      <stop offset="0" stop-color="#0f172a" stop-opacity="0"/>
-      <stop offset="1" stop-color="#0f172a" stop-opacity="0.6"/>
+    <radialGradient id="fSombra" cx="0.5" cy="0.42" r="0.6">
+      <stop offset="0" stop-color="#0b1220" stop-opacity="0"/>
+      <stop offset="1" stop-color="#0b1220" stop-opacity="0.66"/>
     </radialGradient>
   </defs>
 
@@ -347,204 +347,186 @@ function svgFabrica() {
   <rect width="1000" height="470" fill="url(#fParede)"/>
   <rect y="470" width="1000" height="110" fill="url(#fPiso)"/>
   <rect y="462" width="1000" height="12" fill="#5f6975"/>
-  <g stroke="#aab6c4" stroke-width="8" fill="none" opacity="0.65">
-    <path d="M70 46 V462 M330 46 V300 M670 46 V300 M930 46 V462"/>
-    <path d="M50 52 H950"/>
-    <path d="M70 128 L330 64 M670 64 L930 128"/>
+  <g stroke="#b4c0cd" stroke-width="9" fill="none" opacity="0.6">
+    <path d="M60 40 V462 M940 40 V462"/>
+    <path d="M40 46 H960"/>
+    <path d="M60 118 L300 56 M700 56 L940 118"/>
+  </g>
+  <g fill="#d6e0ea" opacity="0.5">
+    <rect x="330" y="62" width="150" height="58" rx="5"/>
+    <rect x="520" y="62" width="150" height="58" rx="5"/>
   </g>
 
   <!-- ============ RISCO 8: inspeção mal iluminada ============ -->
-  <g class="risco" data-risco="f8" data-area="76,64,196,244" tabindex="0" role="button" aria-label="Bancada de inspeção mal iluminada">
-    <rect x="80" y="70" width="188" height="234" rx="10" fill="#516070" opacity="0.32"/>
-    <path d="M174 70 v34" stroke="#5a6875" stroke-width="6"/>
-    <path d="M146 104 h56 l-13 28 h-30 z" fill="#3d4a58"/>
-    <g class="lampada-fraca"><circle cx="174" cy="140" r="9" fill="#fde68a" opacity="0.5"/></g>
-    <rect x="96" y="246" width="156" height="12" rx="4" fill="#b0b8c2"/>
-    <rect x="106" y="258" width="12" height="46" fill="#8d97a3"/>
-    <rect x="230" y="258" width="12" height="46" fill="#8d97a3"/>
-    <g fill="#dbe3ec" opacity="0.6">
-      <rect x="120" y="228" width="38" height="18" rx="3"/>
-      <rect x="176" y="228" width="38" height="18" rx="3"/>
+  <g class="risco" data-risco="f8" data-area="70,132,206,214" tabindex="0" role="button" aria-label="Bancada de inspeção mal iluminada">
+    <rect x="74" y="136" width="198" height="206" rx="10" fill="#4a586a" opacity="0.3"/>
+    <path d="M172 136 v40" stroke="#5f6b79" stroke-width="7"/>
+    <path d="M142 176 h60 l-14 30 h-32 z" fill="#39465a" stroke="#26313f" stroke-width="2.5"/>
+    <g class="lampada-fraca"><circle cx="172" cy="214" r="10" fill="#fde68a" opacity="0.42"/></g>
+    <rect x="94" y="288" width="158" height="13" rx="4" fill="url(#metal)" stroke="#6f7b88" stroke-width="2"/>
+    <rect x="104" y="301" width="13" height="41" fill="#7f8b98"/>
+    <rect x="230" y="301" width="13" height="41" fill="#7f8b98"/>
+    <g fill="#e2e8f0" opacity="0.55" stroke="#94a3b8" stroke-width="1.5">
+      <rect x="118" y="268" width="40" height="20" rx="3"/>
+      <rect x="176" y="268" width="40" height="20" rx="3"/>
     </g>
-    <rect x="80" y="70" width="188" height="234" rx="10" fill="url(#fSombra)"/>
+    <rect x="74" y="136" width="198" height="206" rx="10" fill="url(#fSombra)"/>
   </g>
 
   <!-- ============ RISCO 2: carga acima dos ombros ============ -->
-  <g class="risco" data-risco="f2" data-area="352,84,266,132" tabindex="0" role="button" aria-label="Prateleira acima dos ombros">
-    <rect x="360" y="160" width="250" height="14" fill="#7c7368"/>
-    <rect x="360" y="204" width="250" height="14" fill="#7c7368"/>
-    <rect x="364" y="160" width="13" height="58" fill="#5f5851"/>
-    <rect x="594" y="160" width="13" height="58" fill="#5f5851"/>
+  <g class="risco" data-risco="f2" data-area="330,96,270,138" tabindex="0" role="button" aria-label="Prateleira acima dos ombros">
+    <rect x="338" y="176" width="254" height="15" rx="2" fill="#7a7168" stroke="#57504a" stroke-width="2"/>
+    <rect x="338" y="218" width="254" height="15" rx="2" fill="#7a7168" stroke="#57504a" stroke-width="2"/>
+    <rect x="342" y="176" width="14" height="58" fill="#5f5851"/>
+    <rect x="574" y="176" width="14" height="58" fill="#5f5851"/>
     <g stroke="#8f5a20" stroke-width="3">
-      <rect x="380" y="116" width="62" height="44" rx="4" fill="#d98324"/>
-      <rect x="452" y="122" width="56" height="38" rx="4" fill="#e2701d"/>
-      <rect x="518" y="112" width="66" height="48" rx="4" fill="#d98324"/>
+      <rect x="358" y="128" width="66" height="48" rx="4" fill="url(#caixa)"/>
+      <rect x="434" y="134" width="60" height="42" rx="4" fill="#dd7f22"/>
+      <rect x="504" y="124" width="70" height="52" rx="4" fill="url(#caixa)"/>
     </g>
-    <path d="M372 98 h226" stroke="#dc2626" stroke-width="4" stroke-dasharray="11 8" opacity="0.8"/>
+    <path d="M350 110 h232" stroke="#dc2626" stroke-width="4" stroke-dasharray="11 8" opacity="0.85"/>
+    <text x="466" y="104" text-anchor="middle" font-family="Outfit, sans-serif" font-size="15"
+          font-weight="800" fill="#b91c1c">ACIMA DOS OMBROS</text>
   </g>
 
   <!-- ============ RISCO 6: esteira com movimento repetitivo ============ -->
-  <g class="risco" data-risco="f6" data-area="744,246,238,182" tabindex="0" role="button" aria-label="Esteira transportadora">
-    <rect x="748" y="352" width="230" height="26" rx="11" fill="#4a586a"/>
-    <g class="esteira-rolos" fill="#98a5b4">
-      <circle cx="770" cy="365" r="9"/><circle cx="810" cy="365" r="9"/>
-      <circle cx="850" cy="365" r="9"/><circle cx="890" cy="365" r="9"/>
-      <circle cx="930" cy="365" r="9"/><circle cx="962" cy="365" r="9"/>
+  <g class="risco" data-risco="f6" data-area="676,268,300,176" tabindex="0" role="button" aria-label="Esteira transportadora">
+    <rect x="684" y="336" width="288" height="28" rx="12" fill="#4a586a" stroke="#313d4d" stroke-width="2.5"/>
+    <g class="esteira-rolos" fill="#9dabbb">
+      <circle cx="710" cy="350" r="9"/><circle cx="754" cy="350" r="9"/><circle cx="798" cy="350" r="9"/>
+      <circle cx="842" cy="350" r="9"/><circle cx="886" cy="350" r="9"/><circle cx="930" cy="350" r="9"/>
     </g>
-    <rect x="758" y="378" width="14" height="84" fill="#39465a"/>
-    <rect x="954" y="378" width="14" height="84" fill="#39465a"/>
-    <g class="esteira-caixas" stroke="#b06a13" stroke-width="3">
-      <rect x="778" y="318" width="42" height="34" rx="3" fill="#f0a824"/>
-      <rect x="866" y="318" width="42" height="34" rx="3" fill="#f0a824"/>
-      <rect x="928" y="318" width="42" height="34" rx="3" fill="#f0a824"/>
+    <rect x="694" y="364" width="15" height="98" fill="#39465a"/>
+    <rect x="946" y="364" width="15" height="98" fill="#39465a"/>
+    <g class="esteira-caixas" stroke="#8f5a20" stroke-width="3">
+      <rect x="716" y="298" width="48" height="38" rx="3" fill="url(#caixa)"/>
+      <rect x="812" y="298" width="48" height="38" rx="3" fill="url(#caixa)"/>
+      <rect x="900" y="298" width="48" height="38" rx="3" fill="url(#caixa)"/>
     </g>
-    <!-- operadora em pé, repetindo o mesmo movimento sobre a esteira -->
-    <ellipse cx="838" cy="470" rx="44" ry="7" fill="#0f172a" opacity="0.2"/>
-    <path d="M846 254 q36 0 41 30 q4 20 -8 32 q-11 12 -28 10 q-23 -3 -27 -25 q-5 -26 13 -42 q4 -4 9 -5 z"
-          fill="url(#pele2)" stroke="#d9ab7e" stroke-width="2.5"/>
-    <path d="M818 286 q4 -34 36 -34 q30 0 34 24 q2 10 -2 18 q-8 -18 -32 -18 q-26 0 -36 22 z"
-          fill="#3b2a1c" stroke="#241708" stroke-width="2"/>
-    <ellipse cx="873" cy="290" rx="4.5" ry="5" fill="#22303f"/>
-    <path d="M865 279 q10 -4 17 0" fill="none" stroke="#241708" stroke-width="3" stroke-linecap="round"/>
-    <path d="M884 294 q8 5 8 9 q0 4 -8 4 z" fill="#f2cda4" stroke="#d9ab7e" stroke-width="1.4"/>
-    <path d="M828 296 q-9 3 -9 12 q0 10 10 10" fill="none" stroke="#d9ab7e" stroke-width="4"/>
-    <!-- tronco -->
-    <path d="M824 318 q34 -8 54 4 q10 12 8 46 l-66 4 q-6 -32 4 -54 z"
-          fill="url(#uniVerde)" stroke="#0b5d56" stroke-width="2.5"/>
-    <path d="M834 340 q24 -6 40 2" fill="none" stroke="#0f766e" stroke-width="4" opacity="0.7"/>
-    <!-- braço que repete o ciclo -->
-    <path class="braco-repete" d="M834 330 q-34 16 -44 42 l28 14 q8 -20 28 -30 z"
-          fill="url(#uniVerde)" stroke="#0b5d56" stroke-width="2.5"/>
-    <path d="M804 380 q20 -4 27 8 q6 9 -4 15 q-14 8 -28 0 q-8 -5 -5 -13 q2 -8 10 -10 z"
-          fill="url(#pele2)" stroke="#d9ab7e" stroke-width="2"/>
-    <!-- pernas atrás da esteira -->
-    <path d="M824 368 q6 44 4 72 q-1 11 -12 11 q-11 0 -11 -11 q2 -34 -2 -68 z" fill="#334155" stroke="#1e293b" stroke-width="2.5"/>
-    <path d="M856 368 q6 44 4 72 q-1 11 -12 11 q-11 0 -11 -11 q2 -34 -2 -68 z" fill="#243244" stroke="#1e293b" stroke-width="2.5"/>
-    <path d="M794 450 h42 l4 16 h-50 z" fill="#16202e"/>
-    <path d="M826 450 h42 l4 16 h-50 z" fill="#1b2637"/>
+    <!-- par de mãos repetindo o ciclo sobre a esteira -->
+    <g class="braco-repete">
+      <path d="M826 274 q26 -6 34 10 q6 12 -6 18 q-16 8 -30 -2 q-8 -6 -4 -14 z"
+            fill="url(#pele2)" stroke="#d9ab7e" stroke-width="2.2"/>
+      <path d="M846 268 q22 -10 40 4" fill="none" stroke="#0f766e" stroke-width="16" stroke-linecap="round"/>
+    </g>
+    <!-- seta de ciclo: o movimento se repete sem pausa -->
+    <g opacity="0.95">
+      <path d="M796 250 a34 34 0 1 1 -2 28" fill="none" stroke="#dc2626" stroke-width="5" stroke-linecap="round"/>
+      <path d="M788 272 l7 18 l16 -11 z" fill="#dc2626"/>
+      <text x="828" y="410" text-anchor="middle" font-family="Outfit, sans-serif" font-size="15" font-weight="800" fill="#b91c1c">CICLO SEM PAUSA</text>
+    </g>
   </g>
 
   <!-- ============ RISCO 4: bancada em altura inadequada ============ -->
-  <g class="risco" data-risco="f4" data-area="352,398,254,72" tabindex="0" role="button" aria-label="Bancada baixa">
-    <rect x="360" y="402" width="238" height="15" rx="4" fill="#aab3bd"/>
-    <rect x="374" y="417" width="14" height="53" fill="#828d99"/>
-    <rect x="570" y="417" width="14" height="53" fill="#828d99"/>
-    <path d="M340 410 h-38 M618 410 h38" stroke="#dc2626" stroke-width="4" stroke-dasharray="9 7" opacity="0.85"/>
+  <g class="risco" data-risco="f4" data-area="330,376,268,90" tabindex="0" role="button" aria-label="Bancada baixa">
+    <rect x="338" y="382" width="252" height="16" rx="4" fill="url(#metal)" stroke="#6f7b88" stroke-width="2.5"/>
+    <rect x="354" y="398" width="15" height="64" fill="#7f8b98"/>
+    <rect x="560" y="398" width="15" height="64" fill="#7f8b98"/>
+    <path d="M338 420 h252" stroke="#8e99a6" stroke-width="6"/>
+    <!-- cota mostrando que a bancada é baixa -->
+    <path d="M318 382 v80" stroke="#dc2626" stroke-width="3"/>
+    <path d="M312 382 h12 M312 462 h12" stroke="#dc2626" stroke-width="3"/>
+    <text x="306" y="428" text-anchor="end" font-family="Outfit, sans-serif" font-size="15"
+          font-weight="800" fill="#b91c1c">BAIXA</text>
   </g>
 
-  <!-- operador da bancada, tronco muito fletido -->
-  <g>
-    <ellipse cx="452" cy="466" rx="56" ry="8" fill="#0f172a" opacity="0.2"/>
-    <path d="M420 400 q8 26 6 44 q-1 10 -11 10 q-10 0 -10 -10 q2 -20 -3 -40 z" fill="#2a2a6a" stroke="#1b1b4a" stroke-width="2"/>
-    <!-- tronco fletido sobre a bancada -->
-    <path d="M448 322 q-34 30 -30 84 l66 4 q-6 -46 16 -70 z"
-          fill="url(#uniRoxo)" stroke="#4c1d95" stroke-width="2.5"/>
-    <path d="M436 356 q10 -22 30 -34" fill="none" stroke="#6d28d9" stroke-width="4" opacity="0.7"/>
-    <!-- pernas -->
-    <path d="M436 404 q6 26 4 46 q-1 11 -12 11 q-11 0 -11 -11 q2 -22 -2 -42 z" fill="#3730a3" stroke="#1e1b6b" stroke-width="2.5"/>
-    <path d="M468 404 q6 26 4 46 q-1 11 -12 11 q-11 0 -11 -11 q2 -22 -2 -42 z" fill="#312e81" stroke="#1e1b6b" stroke-width="2.5"/>
-    <path d="M404 452 h42 l4 16 h-50 z" fill="#16202e"/>
-    <path d="M438 452 h42 l4 16 h-50 z" fill="#1b2637"/>
-    <!-- cabeça inclinada para a bancada -->
-    <path d="M470 264 q36 0 41 30 q4 20 -8 32 q-11 12 -28 10 q-23 -3 -27 -25 q-5 -26 13 -42 q4 -4 9 -5 z"
-          fill="url(#pele2)" stroke="#d9ab7e" stroke-width="2.5"/>
-    <path d="M444 292 q8 -28 36 -28 q26 0 32 20 q-14 -12 -34 -10 q-22 2 -34 18 z" fill="#3b2a1c" stroke="#241708" stroke-width="2"/>
-    <ellipse cx="497" cy="300" rx="4.5" ry="5" fill="#22303f"/>
-    <path d="M489 289 q10 -4 17 0" fill="none" stroke="#241708" stroke-width="3" stroke-linecap="round"/>
-    <path d="M508 304 q8 5 8 9 q0 4 -8 4 z" fill="#f2cda4" stroke="#d9ab7e" stroke-width="1.4"/>
-    <path d="M452 306 q-9 3 -9 12 q0 10 10 10" fill="none" stroke="#d9ab7e" stroke-width="4"/>
-  </g>
-
-  <!-- ============ RISCO 5: ferramenta que desvia o punho ============ -->
-  <g class="risco" data-risco="f5" data-area="470,330,132,64" tabindex="0" role="button" aria-label="Ferramenta manual">
-    <path d="M478 334 q40 8 62 32 l-24 22 q-16 -20 -42 -26 z" fill="url(#uniRoxo)" stroke="#4c1d95" stroke-width="2.5"/>
-    <path d="M516 374 q20 -4 28 8 q6 9 -4 15 q-14 8 -28 0 q-8 -5 -5 -13 q2 -8 9 -10 z"
-          fill="url(#pele2)" stroke="#d9ab7e" stroke-width="2"/>
-    <path d="M524 366 q6 -12 2 -22" fill="none" stroke="#dc2626" stroke-width="3" stroke-dasharray="4 3" opacity="0.9"/>
-    <g transform="rotate(30 530 386)">
-      <rect x="504" y="380" width="48" height="13" rx="6" fill="#1e2937"/>
-      <rect x="496" y="372" width="15" height="28" rx="4" fill="#dc2626"/>
-      <path d="M552 386 h20" stroke="#7b8794" stroke-width="8" stroke-linecap="round"/>
+  <!-- ============ RISCO 5: ferramenta que força o desvio do punho ============ -->
+  <g class="risco" data-risco="f5" data-area="404,300,190,84" tabindex="0" role="button" aria-label="Ferramenta manual">
+    <!-- parafusadeira em ângulo ruim, apoiada na bancada -->
+    <g transform="rotate(-24 500 344)">
+      <rect x="440" y="330" width="104" height="28" rx="12" fill="#1f2937" stroke="#0f172a" stroke-width="3"/>
+      <rect x="432" y="316" width="26" height="54" rx="8" fill="#dc2626" stroke="#8f1616" stroke-width="3"/>
+      <rect x="452" y="358" width="30" height="22" rx="5" fill="#374151"/>
+      <path d="M544 344 h34" stroke="#8e99a6" stroke-width="12" stroke-linecap="round"/>
+      <circle cx="586" cy="344" r="9" fill="#6b7280"/>
     </g>
+    <!-- arco de cota mostrando o ângulo forçado da empunhadura -->
+    <path d="M436 356 a52 52 0 0 1 28 -44" fill="none" stroke="#dc2626" stroke-width="3.5" stroke-dasharray="6 5"/>
+    <path d="M462 306 l10 16 l-18 4 z" fill="#dc2626"/>
+    <path d="M436 356 h-24" stroke="#dc2626" stroke-width="3"/>
+    <text x="406" y="360" text-anchor="end" font-family="Outfit, sans-serif" font-size="14"
+          font-weight="800" fill="#b91c1c">PUNHO TORTO</text>
   </g>
 
-  <!-- ============ RISCO 1: levantamento com a coluna curvada ============ -->
-  <g class="risco" data-risco="f1" data-area="82,296,224,190" tabindex="0" role="button" aria-label="Levantamento de carga">
-    <ellipse cx="200" cy="482" rx="86" ry="9" fill="#0f172a" opacity="0.2"/>
-    <!-- perna de trás -->
-    <path d="M248 396 q12 40 10 72 q-1 10 -11 10 q-10 0 -10 -10 q1 -34 -8 -66 z" fill="#1b2637" stroke="#0f172a" stroke-width="2"/>
-    <!-- tronco quase horizontal, com o quadril alto -->
-    <path d="M146 336 q62 4 104 34 q26 20 32 46 l-64 16 q-8 -26 -28 -40 q-22 -16 -50 -22 z"
-          fill="url(#uniVerm)" stroke="#8f1616" stroke-width="2.5"/>
-    <path d="M176 360 q42 12 66 40" fill="none" stroke="#b91c1c" stroke-width="4" opacity="0.7"/>
-    <!-- cinta de segurança na lombar -->
-    <path d="M214 374 q26 10 40 28" fill="none" stroke="#f59e0b" stroke-width="7" opacity="0.9"/>
-    <!-- pernas longas e RETAS: é isso que sobrecarrega a lombar -->
-    <path d="M256 404 q14 42 12 72 q-1 11 -12 11 q-11 0 -11 -11 q2 -32 -10 -68 z" fill="#243244" stroke="#0f172a" stroke-width="2.5"/>
-    <path d="M286 398 q14 44 12 78 q-1 11 -12 11 q-11 0 -11 -11 q2 -36 -10 -72 z" fill="#2a3a52" stroke="#0f172a" stroke-width="2.5"/>
-    <path d="M228 476 h44 q8 0 8 8 v6 h-58 q-6 0 -6 -7 z" fill="#16202e"/>
-    <path d="M260 476 h44 q8 0 8 8 v6 h-58 q-6 0 -6 -7 z" fill="#1b2637"/>
-    <!-- cabeça de perfil, olhando o chão -->
-    <path d="M124 316 q34 -4 42 26 q5 20 -7 33 q-11 12 -28 10 q-23 -3 -28 -25 q-5 -26 12 -40 q4 -3 9 -4 z"
-          fill="url(#pele2)" stroke="#d9ab7e" stroke-width="2.5"/>
-    <path d="M104 340 q6 -30 34 -32 q28 -2 34 20 q-14 -12 -34 -10 q-22 2 -34 22 z" fill="#4a3323" stroke="#33220f" stroke-width="2"/>
-    <ellipse cx="128" cy="352" rx="4.5" ry="5" fill="#22303f"/>
-    <path d="M120 340 q10 -4 17 0" fill="none" stroke="#3f2a1c" stroke-width="3" stroke-linecap="round"/>
-    <path d="M104 356 q-9 3 -9 12 q0 10 10 10" fill="none" stroke="#d9ab7e" stroke-width="4"/>
-    <!-- braço esticado até a alça da caixa -->
-    <path d="M142 368 q-24 26 -28 56 q-2 14 12 18 l22 -10 q-8 -10 -4 -22 q6 -20 18 -34 z"
-          fill="#c62828" stroke="#8f1616" stroke-width="2.5"/>
-    <path d="M124 426 q18 -4 26 6 q6 8 -2 13 q-13 8 -25 1 q-7 -4 -5 -11 q1 -7 6 -9 z"
-          fill="url(#pele2)" stroke="#d9ab7e" stroke-width="2"/>
-    <!-- caixa no chão -->
-    <rect x="110" y="432" width="84" height="48" rx="5" fill="#d98324" stroke="#8f5a20" stroke-width="4"/>
-    <path d="M110 456 h84" stroke="#8f5a20" stroke-width="4"/>
-    <rect x="140" y="422" width="26" height="12" rx="4" fill="#a86416"/>
-    <path d="M96 490 h150" stroke="#dc2626" stroke-width="4" stroke-dasharray="10 8" opacity="0.85"/>
-  </g>
-
-  <!-- ============ RISCO 7: carga afastada do corpo ============ -->
-  <g class="risco" data-risco="f7" data-area="548,300,208,182" tabindex="0" role="button" aria-label="Transporte de carga">
-    <ellipse cx="600" cy="478" rx="52" ry="8" fill="#0f172a" opacity="0.2"/>
-    <path d="M576 428 q8 26 6 44 q-1 10 -11 10 q-10 0 -10 -10 q2 -20 -3 -40 z" fill="#0b4a6f" stroke="#062f46" stroke-width="2"/>
-    <!-- tronco compensando o peso para trás -->
-    <path d="M568 378 q34 -12 54 6 q14 16 12 48 l-64 4 q-8 -36 -2 -58 z"
-          fill="url(#uniAzul)" stroke="#054868" stroke-width="2.5"/>
-    <path d="M578 396 q22 -8 38 2" fill="none" stroke="#0369a1" stroke-width="4" opacity="0.7"/>
-    <!-- braços esticados à frente, longe do tronco -->
-    <path d="M604 388 q56 -6 90 4 l-6 28 q-36 -10 -84 -6 z" fill="url(#uniAzul)" stroke="#054868" stroke-width="2.5"/>
-    <path d="M686 388 q20 -2 26 10 q5 10 -6 15 q-16 6 -28 -3 q-7 -6 -3 -13 q3 -7 11 -9 z"
-          fill="url(#pele2)" stroke="#d9ab7e" stroke-width="2"/>
-    <!-- pernas -->
-    <path d="M582 430 q6 24 4 42 q-1 11 -12 11 q-11 0 -11 -11 q2 -20 -2 -38 z" fill="#1e3a5f" stroke="#0f172a" stroke-width="2.5"/>
-    <path d="M610 430 q6 24 4 42 q-1 11 -12 11 q-11 0 -11 -11 q2 -20 -2 -38 z" fill="#17304f" stroke="#0f172a" stroke-width="2.5"/>
-    <path d="M550 474 h42 l4 16 h-50 z" fill="#16202e"/>
-    <path d="M582 474 h42 l4 16 h-50 z" fill="#1b2637"/>
-    <!-- cabeça de perfil -->
-    <path d="M588 320 q36 0 41 30 q4 20 -8 32 q-11 12 -28 10 q-23 -3 -27 -25 q-5 -26 13 -42 q4 -4 9 -5 z"
-          fill="url(#pele2)" stroke="#d9ab7e" stroke-width="2.5"/>
-    <path d="M562 348 q8 -28 36 -28 q26 0 32 20 q-14 -12 -34 -10 q-22 2 -34 18 z" fill="#4a3323" stroke="#33220f" stroke-width="2"/>
-    <ellipse cx="615" cy="356" rx="4.5" ry="5" fill="#22303f"/>
-    <path d="M607 345 q10 -4 17 0" fill="none" stroke="#3f2a1c" stroke-width="3" stroke-linecap="round"/>
-    <path d="M626 360 q8 5 8 9 q0 4 -8 4 z" fill="#f2cda4" stroke="#d9ab7e" stroke-width="1.4"/>
-    <path d="M570 362 q-9 3 -9 12 q0 10 10 10" fill="none" stroke="#d9ab7e" stroke-width="4"/>
-    <!-- caixa longe do corpo -->
-    <rect x="700" y="382" width="66" height="54" rx="5" fill="#ca8a04" stroke="#7f5307" stroke-width="4"/>
-    <path d="M700 408 h66" stroke="#7f5307" stroke-width="4"/>
-    <path d="M624 356 h104" stroke="#dc2626" stroke-width="4" stroke-dasharray="10 8" opacity="0.9"/>
+  <!-- ============ RISCO 7: carga afastada do corpo (silhueta ao fundo) ============ -->
+  <g class="risco" data-risco="f7" data-area="620,150,190,150" tabindex="0" role="button" aria-label="Transporte de carga">
+    <g opacity="0.34" fill="#334155">
+      <circle cx="664" cy="186" r="21"/>
+      <path d="M646 214 q22 -8 38 4 q10 12 8 40 l-50 2 q-6 -28 4 -46 z"/>
+      <path d="M676 226 q46 -4 74 4 l-4 22 q-30 -8 -68 -4 z"/>
+      <path d="M652 262 v34 M676 262 v34" stroke="#334155" stroke-width="15" stroke-linecap="round"/>
+    </g>
+    <rect x="748" y="216" width="56" height="44" rx="4" fill="url(#caixa)" stroke="#8f5a20" stroke-width="3" opacity="0.85"/>
+    <path d="M690 178 h96" stroke="#dc2626" stroke-width="4" stroke-dasharray="10 8" opacity="0.9"/>
+    <text x="738" y="170" text-anchor="middle" font-family="Outfit, sans-serif" font-size="14"
+          font-weight="800" fill="#b91c1c">CARGA LONGE</text>
   </g>
 
   <!-- ============ RISCO 3: piso duro, sem tapete antifadiga ============ -->
-  <g class="risco" data-risco="f3" data-area="300,486,336,84" tabindex="0" role="button" aria-label="Piso de concreto">
-    <rect x="304" y="490" width="328" height="76" rx="7" fill="#6b7684" opacity="0.6"/>
+  <g class="risco" data-risco="f3" data-area="596,478,382,92" tabindex="0" role="button" aria-label="Piso de concreto">
+    <rect x="600" y="482" width="374" height="84" rx="7" fill="#6b7684" opacity="0.6"/>
     <g stroke="#54606d" stroke-width="3" opacity="0.9">
-      <path d="M304 516 H632 M304 542 H632 M386 490 V566 M468 490 V566 M550 490 V566"/>
+      <path d="M600 510 H974 M600 538 H974 M694 482 V566 M788 482 V566 M882 482 V566"/>
     </g>
-    <text x="468" y="536" text-anchor="middle" font-family="Outfit, sans-serif"
-          font-size="21" font-weight="800" fill="#e8edf3" opacity="0.85">CONCRETO</text>
+    <text x="787" y="530" text-anchor="middle" font-family="Outfit, sans-serif"
+          font-size="22" font-weight="800" fill="#e8edf3" opacity="0.85">CONCRETO</text>
+  </g>
+
+  <!-- ====== RISCO 1: levantamento com a coluna curvada (figura principal) ====== -->
+  <g class="risco" data-risco="f1" data-area="96,330,244,206" tabindex="0" role="button" aria-label="Levantamento de carga">
+    <ellipse cx="222" cy="524" rx="104" ry="11" fill="#0b1220" opacity="0.24"/>
+
+    <!-- perna de trás -->
+    <path d="M254 412 q16 56 12 92 q-1 13 -14 13 q-13 0 -13 -13 q2 -42 -10 -86 z"
+          fill="#25344a" stroke="#0f172a" stroke-width="2.5"/>
+    <path d="M226 512 h48 q10 0 10 10 v8 h-64 q-8 0 -8 -9 z" fill="#111c2b"/>
+
+    <!-- tronco quase horizontal: a coluna faz todo o esforço -->
+    <path d="M160 356 q66 2 114 38 q30 22 38 54 l-70 20 q-10 -30 -34 -46 q-24 -16 -52 -22 z"
+          fill="url(#uniforme)" stroke="#9a3412" stroke-width="3"/>
+    <path d="M190 378 q46 12 74 42" fill="none" stroke="#c2410c" stroke-width="4.5" opacity="0.75"/>
+    <!-- faixa refletiva do uniforme -->
+    <path d="M206 372 q44 14 66 44" fill="none" stroke="#fde68a" stroke-width="8" opacity="0.95"/>
+    <path d="M206 372 q44 14 66 44" fill="none" stroke="#a16207" stroke-width="1.6" opacity="0.5"/>
+
+    <!-- perna da frente, reta: o erro que sobrecarrega a lombar -->
+    <path d="M300 402 q20 58 16 100 q-1 13 -15 13 q-14 0 -14 -13 q3 -46 -14 -94 z"
+          fill="url(#calcaF)" stroke="#0f172a" stroke-width="2.5"/>
+    <path d="M276 512 h50 q10 0 10 10 v8 h-66 q-8 0 -8 -9 z" fill="#16202e"/>
+    <path d="M222 530 h122" stroke="#0b1220" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+
+    <!-- capacete e cabeça de perfil, olhando o chão -->
+    <path d="M136 330 q40 -6 50 28 q6 22 -8 36 q-13 13 -32 10 q-25 -4 -29 -28 q-4 -28 14 -42 z"
+          fill="url(#pele2)" stroke="#d9ab7e" stroke-width="2.5"/>
+    <path d="M118 348 q4 -32 38 -34 q32 -2 40 22 q3 9 1 17 q-13 -17 -37 -16 q-27 1 -42 21 z"
+          fill="#facc15" stroke="#a16207" stroke-width="2.5"/>
+    <path d="M112 366 q-8 4 -6 12 q2 8 12 8" fill="none" stroke="#a16207" stroke-width="6"/>
+    <ellipse cx="150" cy="368" rx="4.8" ry="5.4" fill="#22303f"/>
+    <path d="M141 356 q11 -4 19 0" fill="none" stroke="#3f2a1c" stroke-width="3" stroke-linecap="round"/>
+    <path d="M181 372 q9 6 9 11 q0 4 -9 4 z" fill="#f2cda4" stroke="#d9ab7e" stroke-width="1.5"/>
+    <path d="M172 396 q8 3 12 1" fill="none" stroke="#c4855c" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M118 378 q-10 3 -10 13 q0 11 11 11" fill="none" stroke="#d9ab7e" stroke-width="4.5"/>
+
+    <!-- braço esticado por fora do tronco, mão fechada na alça da caixa -->
+    <path d="M182 396 q-14 34 -14 62 q0 14 16 16 l24 -14 q-10 -10 -8 -24 q3 -20 12 -38 z"
+          fill="#fb923c" stroke="#9a3412" stroke-width="3"/>
+    <path d="M186 452 q24 -6 33 8 q7 11 -4 17 q-17 9 -31 0 q-8 -6 -6 -14 q2 -9 8 -11 z"
+          fill="url(#pele2)" stroke="#d9ab7e" stroke-width="2.2"/>
+    <path d="M196 458 q10 -2 16 4" fill="none" stroke="#d9ab7e" stroke-width="2"/>
+
+    <!-- caixa pesada no chão -->
+    <rect x="112" y="464" width="96" height="56" rx="6" fill="url(#caixa)" stroke="#8f5a20" stroke-width="4"/>
+    <path d="M112 492 h96" stroke="#8f5a20" stroke-width="4"/>
+    <rect x="176" y="450" width="34" height="14" rx="5" fill="#a86416" stroke="#7c4a12" stroke-width="2"/>
+    <text x="160" y="512" text-anchor="middle" font-family="Outfit, sans-serif" font-size="15"
+          font-weight="800" fill="#7c4a12">25 kg</text>
+
+    <!-- indicação da coluna fletida -->
+    <path d="M156 344 q70 6 120 52" fill="none" stroke="#dc2626" stroke-width="3.5" stroke-dasharray="7 6" opacity="0.9"/>
   </g>
 </svg>`;
 }
+
 function montarCena(chave) {
     return chave === 'escritorio' ? svgEscritorio() : svgFabrica();
 }
