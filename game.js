@@ -353,6 +353,7 @@ function startClickScene(phase) {
        retângulo invisível desalinhado da figura. */
     const alvo = document.getElementById('cenaSvg');
     alvo.innerHTML = montarCena(phase === 2 ? 'escritorio' : 'fabrica');
+    ativarAreasDeClique(alvo.querySelector('svg'));
 
     const container = document.getElementById('clickSceneContainer');
     container.onclick = (e) => handleClickScene(e, riscos, phase);

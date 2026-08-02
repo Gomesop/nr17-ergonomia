@@ -410,3 +410,44 @@ function svgFabrica() {
 function montarCena(chave) {
     return chave === 'escritorio' ? svgEscritorio() : svgFabrica();
 }
+
+/* Em SVG o clique só é capturado onde há preenchimento ou traço. Num desenho
+   feito de linhas — um cabo, uma haste de luminária, o contorno de um braço —
+   o miolo fica vazado e o usuário clica "em cima" do risco sem acertar nada.
+   Aqui cada grupo ganha um retângulo de captura invisível, derivado do próprio
+   getBBox do desenho: a área clicável passa a ser exatamente a figura, com uma
+   folga pequena, e continua alinhada em qualquer tamanho de tela.
+   Os retângulos são inseridos como PRIMEIRO filho para não cobrir o desenho,
+   e os grupos menores são processados por último para vencerem a disputa
+   quando duas áreas se encostam. */
+function ativarAreasDeClique(svg) {
+    if (!svg) return;
+    const grupos = [...svg.querySelectorAll('.risco')];
+
+    // ordena do maior para o menor: no SVG, quem vem depois no DOM fica por cima
+    grupos
+        .map(g => ({ g, area: (() => { try { const b = g.getBBox(); return b.width * b.height; } catch (e) { return 0; } })() }))
+        .sort((a, b) => b.area - a.area)
+        .forEach(({ g }) => {
+            if (g.querySelector('.area-clique')) return;
+            let b;
+            try { b = g.getBBox(); } catch (e) { return; }
+            if (!b.width || !b.height) return;
+
+            const folga = 6;
+            const r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            r.setAttribute('class', 'area-clique');
+            r.setAttribute('x', b.x - folga);
+            r.setAttribute('y', b.y - folga);
+            r.setAttribute('width', b.width + folga * 2);
+            r.setAttribute('height', b.height + folga * 2);
+            r.setAttribute('fill', '#fff');
+            r.setAttribute('fill-opacity', '0');
+            r.setAttribute('pointer-events', 'all');
+            g.insertBefore(r, g.firstChild);
+
+            // o grupo inteiro vira alvo, inclusive o que é só traço
+            g.setAttribute('pointer-events', 'all');
+            svg.appendChild(g);   // reposiciona: menores acabam por cima
+        });
+}
