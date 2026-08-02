@@ -399,6 +399,8 @@ function handleClickScene(e, riscos, phase) {
         playOk();
         G.found.push(achou.id); G.correct++;
         grupo.classList.add('achado');
+        contornarAchado(grupo);
+        marcarAchado(grupo, G.found.length);
         document.getElementById('csFound').textContent = G.found.length;
         document.getElementById('csCorrect').textContent = G.correct;
 
@@ -420,8 +422,64 @@ function handleClickScene(e, riscos, phase) {
 
     playErr(); G.wrong++;
     document.getElementById('csWrong').textContent = G.wrong;
-    ct.classList.add('shake');
-    setTimeout(() => ct.classList.remove('shake'), 400);
+
+    /* O erro precisa ser sentido: a cena treme, pisca de vermelho e um aviso
+       curto explica que ali não há risco — sem dizer onde ele está. */
+    ct.classList.add('errou');
+    setTimeout(() => ct.classList.remove('errou'), 700);
+
+    const faltam = riscos.length - G.found.length;
+    const frases = [
+        'Aqui não há risco ergonômico. Observe a postura, o mobiliário e o entorno.',
+        'Nada de errado neste ponto. Olhe a altura dos equipamentos e o apoio do corpo.',
+        'Ponto correto do cenário. Procure o que força o corpo a compensar.'
+    ];
+    const aviso = document.createElement('div');
+    aviso.className = 'aviso-erro';
+    aviso.innerHTML = `<span>❌</span><span>${frases[G.wrong % frases.length]} Faltam ${faltam}.</span>`;
+    ct.appendChild(aviso);
+    setTimeout(() => aviso.remove(), 1900);
+}
+
+/* Contorno verde tracejado em volta do risco encontrado, para ele continuar
+   visível mesmo depois da animação. */
+function contornarAchado(grupo) {
+    const area = grupo.querySelector('.area-clique');
+    if (!area || grupo.querySelector('.contorno-achado')) return;
+    const NS = 'http://www.w3.org/2000/svg';
+    const r = document.createElementNS(NS, 'rect');
+    r.setAttribute('class', 'contorno-achado');
+    r.setAttribute('x', area.getAttribute('x'));
+    r.setAttribute('y', area.getAttribute('y'));
+    r.setAttribute('width', area.getAttribute('width'));
+    r.setAttribute('height', area.getAttribute('height'));
+    r.setAttribute('rx', '10');
+    r.setAttribute('fill', 'rgba(34,197,94,0.16)');
+    r.setAttribute('stroke', '#22c55e');
+    r.setAttribute('stroke-width', '4');
+    r.setAttribute('stroke-dasharray', '10 7');
+    r.setAttribute('pointer-events', 'none');
+    grupo.appendChild(r);
+}
+
+/* Selo verde numerado, ancorado no centro do risco encontrado. Fica na cena
+   até o fim da fase, servindo de placar visual do que já foi achado. */
+function marcarAchado(grupo, numero) {
+    const svg = grupo.ownerSVGElement;
+    const area = grupo.querySelector('.area-clique');
+    if (!svg || !area) return;
+
+    const x = +area.getAttribute('x') + (+area.getAttribute('width')) / 2;
+    const y = +area.getAttribute('y') + 16;
+    const NS = 'http://www.w3.org/2000/svg';
+
+    const g = document.createElementNS(NS, 'g');
+    g.setAttribute('class', 'selo-achado');
+    g.setAttribute('transform', `translate(${x} ${y})`);
+    g.innerHTML =
+        '<circle r="21" fill="#16a34a" stroke="#dcfce7" stroke-width="4"/>' +
+        `<text y="7" text-anchor="middle" font-family="Outfit, sans-serif" font-size="21" font-weight="900" fill="#fff">${numero}</text>`;
+    svg.appendChild(g);
 }
 
 // ============================================================

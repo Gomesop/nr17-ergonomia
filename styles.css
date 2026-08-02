@@ -417,20 +417,30 @@ a { color: var(--azul); text-decoration: none; }
    desenho. Sem isto, formas que se espalham pela cena — o cone da luminária,
    o jato do ar-condicionado, as pernas da banqueta — roubavam o clique de
    quem estava por baixo, mesmo com a área delimitada. */
-.cena-svg .risco { cursor: pointer; transition: 0.18s ease; }
 .cena-svg .risco > *:not(.area-clique) { pointer-events: none; }
 .cena-svg .area-clique { pointer-events: all; }
-.cena-svg .risco:hover { filter: drop-shadow(0 0 10px rgba(251,191,36,0.9)); }
+
+/* NADA de destaque no hover e nada de cursor diferente sobre o risco: qualquer
+   reação do ponteiro entregaria de graça onde estão as oito respostas. A mira
+   é a mesma em toda a cena, do começo ao fim. */
+.scene-container, .cena-svg, .cena-svg .risco { cursor: crosshair; }
+.cena-svg .risco { transition: 0.2s ease; }
 .cena-svg .risco:focus-visible { outline: 3px solid var(--amarelo); outline-offset: 3px; }
 .cena-svg .risco.achado {
-    filter: drop-shadow(0 0 9px rgba(34,197,94,0.95));
-    animation: achou 0.5s ease;
+    filter: drop-shadow(0 0 3px #052e16) drop-shadow(0 0 14px rgba(34,197,94,1));
+    animation: achou 0.6s cubic-bezier(0.34,1.56,0.64,1);
     cursor: default;
 }
 @keyframes achou {
-    0%   { transform: scale(1); }
-    45%  { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0%   { transform: scale(1);    filter: drop-shadow(0 0 0 rgba(34,197,94,0)); }
+    40%  { transform: scale(1.09); filter: drop-shadow(0 0 22px rgba(34,197,94,1)); }
+    100% { transform: scale(1);    filter: drop-shadow(0 0 3px #052e16) drop-shadow(0 0 14px rgba(34,197,94,1)); }
+}
+/* selo com o número da descoberta, fixado sobre o risco encontrado */
+.selo-achado { pointer-events: none; animation: seloEntra 0.45s cubic-bezier(0.34,1.56,0.64,1) both; }
+@keyframes seloEntra {
+    from { opacity: 0; transform: translateY(-14px) scale(0.4); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 /* animações discretas dentro das cenas */
@@ -450,6 +460,38 @@ a { color: var(--azul); text-decoration: none; }
     color: #fde68a; border-radius: 12px; padding: 0.6rem 0.9rem;
     font-size: 0.8rem; margin-bottom: 0.7rem; line-height: 1.5;
 }
+
+/* aviso de erro: aparece por cima da cena e some sozinho */
+.aviso-erro {
+    position: absolute; left: 50%; top: 14px; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 0.5rem;
+    background: rgba(153,27,27,0.94); border: 1px solid #f87171;
+    color: #fee2e2; font-size: 0.84rem; font-weight: 600;
+    padding: 0.55rem 1rem; border-radius: 999px; white-space: nowrap;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.45); pointer-events: none; z-index: 5;
+    animation: avisoErro 1.9s ease forwards;
+}
+@keyframes avisoErro {
+    0%   { opacity: 0; transform: translate(-50%, -14px); }
+    12%  { opacity: 1; transform: translate(-50%, 0); }
+    78%  { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, -10px); }
+}
+
+/* a cena inteira treme e pisca de vermelho no erro */
+.scene-container.errou { animation: tremer 0.42s ease; }
+@keyframes tremer {
+    0%,100% { transform: translateX(0); }
+    22%     { transform: translateX(-9px); }
+    46%     { transform: translateX(9px); }
+    72%     { transform: translateX(-5px); }
+}
+.scene-container::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    border-radius: var(--r); box-shadow: inset 0 0 0 0 rgba(239,68,68,0);
+    transition: box-shadow 0.25s ease;
+}
+.scene-container.errou::after { box-shadow: inset 0 0 46px 8px rgba(239,68,68,0.55); }
 
 .marcador {
     position: absolute; width: 34px; height: 34px; margin: -17px 0 0 -17px;
