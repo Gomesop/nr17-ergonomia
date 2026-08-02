@@ -163,7 +163,7 @@ function svgEscritorio() {
   </g>
 
   <!-- ============ RISCO 6: ar-condicionado ============ -->
-  <g class="risco" data-risco="o6" tabindex="0" role="button" aria-label="Ar-condicionado">
+  <g class="risco" data-risco="o6" data-area="386,34,204,72" tabindex="0" role="button" aria-label="Ar-condicionado">
     <rect x="392" y="40" width="190" height="58" rx="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="4"/>
     <rect x="404" y="80" width="166" height="10" rx="5" fill="#cbd5e1"/>
     <circle cx="560" cy="56" r="5" fill="#22c55e"/>
@@ -174,7 +174,7 @@ function svgEscritorio() {
   </g>
 
   <!-- ============ RISCO 5: luminária ofuscando ============ -->
-  <g class="risco" data-risco="o5" tabindex="0" role="button" aria-label="Luminária">
+  <g class="risco" data-risco="o5" data-area="190,54,108,152" tabindex="0" role="button" aria-label="Luminária">
     <path d="M240 60 v92" stroke="#475569" stroke-width="7"/>
     <path d="M198 152 h84 l-20 42 h-44 z" fill="#334155"/>
     <circle cx="240" cy="196" r="12" fill="#fde68a"/>
@@ -228,7 +228,7 @@ function svgEscritorio() {
   </g>
 
   <!-- ============ RISCO 2: banqueta sem encosto ============ -->
-  <g class="risco" data-risco="o2" tabindex="0" role="button" aria-label="Assento">
+  <g class="risco" data-risco="o2" data-area="134,394,126,44" tabindex="0" role="button" aria-label="Assento">
     <ellipse cx="196" cy="412" rx="60" ry="16" fill="#475569"/>
     <rect x="188" y="412" width="16" height="56" fill="#64748b"/>
     <path d="M150 470 h92" stroke="#475569" stroke-width="10" stroke-linecap="round"/>
@@ -236,7 +236,7 @@ function svgEscritorio() {
   </g>
 
   <!-- ============ RISCO 8: pés sem apoio ============ -->
-  <g class="risco" data-risco="o8" tabindex="0" role="button" aria-label="Pés do trabalhador">
+  <g class="risco" data-risco="o8" data-area="174,440,104,54" tabindex="0" role="button" aria-label="Pés do trabalhador">
     <path d="M206 402 q10 42 -2 62" fill="none" stroke="#1e3a8a" stroke-width="24" stroke-linecap="round"/>
     <path d="M232 404 q14 40 4 60" fill="none" stroke="#1e3a8a" stroke-width="24" stroke-linecap="round"/>
     <path d="M186 466 h40 l6 18 h-52 z" fill="#111827"/>
@@ -245,7 +245,7 @@ function svgEscritorio() {
   </g>
 
   <!-- ============ RISCO 4: cabos no piso ============ -->
-  <g class="risco" data-risco="o4" tabindex="0" role="button" aria-label="Cabos no piso">
+  <g class="risco" data-risco="o4" data-area="318,424,296,92" tabindex="0" role="button" aria-label="Cabos no piso">
     <path d="M330 430 q60 40 30 74 q-30 34 60 30 q80 -4 130 -34"
           fill="none" stroke="#1f2937" stroke-width="9" stroke-linecap="round"/>
     <path d="M382 430 q-20 52 40 72 q60 20 148 -14"
@@ -327,7 +327,7 @@ function svgFabrica() {
   </g>
 
   <!-- ============ RISCO 4: bancada baixa ============ -->
-  <g class="risco" data-risco="f4" tabindex="0" role="button" aria-label="Bancada de trabalho">
+  <g class="risco" data-risco="f4" data-area="374,378,252,66" tabindex="0" role="button" aria-label="Bancada de trabalho">
     <rect x="380" y="382" width="240" height="16" rx="4" fill="#a8a29e"/>
     <rect x="394" y="398" width="14" height="42" fill="#78716c"/>
     <rect x="592" y="398" width="14" height="42" fill="#78716c"/>
@@ -344,7 +344,7 @@ function svgFabrica() {
   </g>
 
   <!-- ============ RISCO 5: ferramenta com punho desviado ============ -->
-  <g class="risco" data-risco="f5" tabindex="0" role="button" aria-label="Ferramenta manual">
+  <g class="risco" data-risco="f5" data-area="424,342,106,56" tabindex="0" role="button" aria-label="Ferramenta manual">
     <path d="M498 344 q-24 14 -30 30" fill="none" stroke="#7c3aed" stroke-width="16" stroke-linecap="round"/>
     <circle cx="466" cy="378" r="12" fill="#f5d0a9"/>
     <g transform="rotate(38 466 378)">
@@ -426,15 +426,28 @@ function ativarAreasDeClique(svg) {
 
     // ordena do maior para o menor: no SVG, quem vem depois no DOM fica por cima
     grupos
-        .map(g => ({ g, area: (() => { try { const b = g.getBBox(); return b.width * b.height; } catch (e) { return 0; } })() }))
+        .map(g => ({ g, area: (() => {
+            if (g.dataset.area) { const [, , w, h] = g.dataset.area.split(',').map(Number); return w * h; }
+            try { const b = g.getBBox(); return b.width * b.height; } catch (e) { return 0; }
+        })() }))
         .sort((a, b) => b.area - a.area)
         .forEach(({ g }) => {
             if (g.querySelector('.area-clique')) return;
+            /* Onde dois desenhos se encostam — a luminária e o ar-condicionado,
+               o assento e os pés, a bancada e a ferramenta — a caixa automática
+               de um engolia o vizinho. Nesses casos a área vem escrita à mão no
+               próprio SVG, em coordenadas do viewBox. */
             let b;
-            try { b = g.getBBox(); } catch (e) { return; }
+            const manual = g.dataset.area;
+            if (manual) {
+                const [x, y, w, h] = manual.split(',').map(Number);
+                b = { x, y, width: w, height: h };
+            } else {
+                try { b = g.getBBox(); } catch (e) { return; }
+            }
             if (!b.width || !b.height) return;
 
-            const folga = 6;
+            const folga = manual ? 0 : 6;
             const r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
             r.setAttribute('class', 'area-clique');
             r.setAttribute('x', b.x - folga);
