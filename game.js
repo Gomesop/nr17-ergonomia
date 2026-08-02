@@ -7,7 +7,7 @@
 const G = {
     name: '', email: '', empresa: '', phase: 0,
     found: [], correct: 0, wrong: 0,
-    results: {1:{c:0,w:0},2:{c:0,w:0},3:{c:0,w:0},4:{c:0,w:0},5:{c:0,w:0},6:{c:0,w:0}},
+    results: {1:{c:0,w:0},2:{c:0,w:0},3:{c:0,w:0},4:{c:0,w:0},5:{c:0,w:0}},
     quizIdx: 0, cardIdx: 0, vfIdx: 0, p1Idx: 0, timerInterval: null
 };
 
@@ -137,10 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
 const PHASES = {
     1: { badge:'FASE 1', icon:'🪑', title:'Monte o Posto de Trabalho', desc:'Monte um posto de trabalho ergonômico escolhendo os itens corretos para cada elemento. Aplique os conceitos da NR-17 sobre mobiliário e postura!', rules:[{ok:true,t:'Escolha correta = Acerto!'},{ok:false,t:'Escolha errada = Erro!'}] },
     2: { badge:'FASE 2', icon:'🔍', title:'Caça aos Erros - Escritório', desc:'Observe o cenário de um escritório. Existem <strong>8 violações ergonômicas</strong> escondidas. Clique sobre cada risco para identificá-lo!', rules:[{ok:true,t:'Clique no risco = Acerto!'},{ok:false,t:'Clique fora = Erro!'}] },
-    3: { badge:'FASE 3', icon:'🏭', title:'Caça aos Erros - Fábrica', desc:'Agora observe o cenário de uma fábrica. Encontre as <strong>8 violações ergonômicas</strong> relacionadas ao levantamento de cargas e organização do trabalho.', rules:[{ok:true,t:'Clique no risco = Acerto!'},{ok:false,t:'Clique fora = Erro!'}] },
-    4: { badge:'FASE 4', icon:'⏱️', title:'Quiz Relâmpago NR-17', desc:'Responda <strong>15 perguntas</strong> sobre a NR-17 antes que o tempo acabe! Você tem <strong>15 segundos</strong> por pergunta.', rules:[{ok:true,t:'Resposta correta = +1 ponto'},{ok:false,t:'Resposta errada ou tempo esgotado = Erro'}] },
-    5: { badge:'FASE 5', icon:'🃏', title:'Cartas Ergonômicas', desc:'Para cada <strong>problema ergonômico</strong> apresentado, selecione a <strong>solução correta</strong> entre as opções disponíveis.', rules:[{ok:true,t:'Solução correta = Acerto!'},{ok:false,t:'Solução errada = Erro!'}] },
-    6: { badge:'FASE 6', icon:'🧠', title:'Verdadeiro ou Falso', desc:'Avalie <strong>12 afirmações</strong> sobre ergonomia e NR-17. Classifique cada uma como Verdadeira ou Falsa!', rules:[{ok:true,t:'Classificação correta = Acerto!'},{ok:false,t:'Classificação errada = Erro!'}] }
+    3: { badge:'FASE 3', icon:'⏱️', title:'Quiz Relâmpago NR-17', desc:'Responda <strong>15 perguntas</strong> sobre a NR-17 antes que o tempo acabe! Você tem <strong>15 segundos</strong> por pergunta.', rules:[{ok:true,t:'Resposta correta = +1 ponto'},{ok:false,t:'Resposta errada ou tempo esgotado = Erro'}] },
+    4: { badge:'FASE 4', icon:'🃏', title:'Cartas Ergonômicas', desc:'Para cada <strong>problema ergonômico</strong> apresentado, selecione a <strong>solução correta</strong> entre as opções disponíveis.', rules:[{ok:true,t:'Solução correta = Acerto!'},{ok:false,t:'Solução errada = Erro!'}] },
+    5: { badge:'FASE 5', icon:'🧠', title:'Verdadeiro ou Falso', desc:'Avalie <strong>12 afirmações</strong> sobre ergonomia e NR-17. Classifique cada uma como Verdadeira ou Falsa!', rules:[{ok:true,t:'Classificação correta = Acerto!'},{ok:false,t:'Classificação errada = Erro!'}] }
 };
 
 function showPhaseIntro(phase) {
@@ -153,7 +152,7 @@ function showPhaseIntro(phase) {
     
     // Progress dots
     let dots = '';
-    for(let i=1;i<=6;i++) dots += `<div class="progress-dot ${i<phase?'completed':''} ${i===phase?'active':''}"></div>`;
+    for(let i=1;i<=5;i++) dots += `<div class="progress-dot ${i<phase?'completed':''} ${i===phase?'active':''}"></div>`;
     document.getElementById('progressDots').innerHTML = dots;
     
     // Rules
@@ -169,10 +168,9 @@ function startCurrentPhase() {
     switch(G.phase) {
         case 1: startPhase1(); break;
         case 2: startClickScene(2); break;
-        case 3: startClickScene(3); break;
-        case 4: startQuiz(); break;
-        case 5: startCards(); break;
-        case 6: startVF(); break;
+        case 3: startQuiz(); break;
+        case 4: startCards(); break;
+        case 5: startVF(); break;
     }
 }
 
@@ -748,7 +746,7 @@ function startVF() {
 
 function loadVF() {
     if(G.vfIdx >= VF_STATEMENTS.length) {
-        G.results[6] = {c:G.correct, w:G.wrong};
+        G.results[5] = {c:G.correct, w:G.wrong};
         showComplete();
         return;
     }
@@ -828,14 +826,14 @@ function showComplete() {
     `;
     
     const btn = document.getElementById('btnNext');
-    btn.innerHTML = G.phase < 6 ? '<span>Próxima Fase</span><span class="btn-arrow">→</span>' : '<span>Ver Certificado</span><span class="btn-arrow">→</span>';
+    btn.innerHTML = G.phase < 5 ? '<span>Próxima Fase</span><span class="btn-arrow">→</span>' : '<span>Ver Certificado</span><span class="btn-arrow">→</span>';
     
     showScreen('phaseComplete');
 }
 
 function goNextPhase() {
     G.phase++;
-    if(G.phase <= 6) showPhaseIntro(G.phase);
+    if(G.phase <= 5) showPhaseIntro(G.phase);
     else showCertificate();
 }
 
@@ -857,10 +855,10 @@ function showCertificate() {
     document.getElementById('certName').textContent = G.name;
     document.getElementById('certDate').textContent = new Date().toLocaleDateString('pt-BR', {day:'2-digit',month:'long',year:'numeric'});
     
-    const icons = ['🪑','🔍','🏭','⏱️','🃏','🧠'];
-    const names = ['Monte o Posto','Escritório','Fábrica','Quiz NR-17','Cartas','V ou F'];
+    const icons = ['🪑','🔍','⏱️','🃏','🧠'];
+    const names = ['Monte o Posto','Escritório','Quiz NR-17','Cartas','V ou F'];
     let html = '';
-    for(let i=1;i<=6;i++) {
+    for(let i=1;i<=5;i++) {
         const r = G.results[i];
         html += `<div class="cert-result-item"><span class="cert-result-icon">${icons[i-1]}</span><span class="cert-result-label">${names[i-1]}</span><span class="cert-result-value">${r.c} ✓ / ${r.w} ✗</span></div>`;
     }
@@ -870,7 +868,7 @@ function showCertificate() {
 
 function restartGame() {
     Object.assign(G, { name:'',email:'',empresa:'',phase:0,found:[],correct:0,wrong:0,
-        results:{1:{c:0,w:0},2:{c:0,w:0},3:{c:0,w:0},4:{c:0,w:0},5:{c:0,w:0},6:{c:0,w:0}},
+        results:{1:{c:0,w:0},2:{c:0,w:0},3:{c:0,w:0},4:{c:0,w:0},5:{c:0,w:0}},
         quizIdx:0,cardIdx:0,vfIdx:0,p1Idx:0 });
     clearInterval(G.timerInterval);
     document.getElementById('inputName').value = '';
